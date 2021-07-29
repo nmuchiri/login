@@ -31,8 +31,8 @@ const booksControllers= require('./controllers/books')
 app.use('/books', booksControllers)
 
 //bring in the sessions controller
-const sessionsControllers = require('./controllers/sessionsRoutes')
-app.use('/sessions', sessionsControllers)
+// const sessionsControllers = require('./controllers/sessions')
+// app.use('/sessions', sessionsControllers)
 
 app.use('/', (req, res)=>{
     console.log('/page')

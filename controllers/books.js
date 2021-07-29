@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const Book = require('../models/books.js')
+const Book = require('../models/booksModel.js')
 
-
+console.log(Book)
 // create new book
 router.post('/index', (req, res)=>{
     Book.create(req.body, (err, newBook)=>{
@@ -100,7 +100,7 @@ router.get('/index/:id/edit', (req, res)=>{
             //res.send(program)
             res.render('edit.ejs', {
                 data: data,
-                currentUser: req.session.currentUser
+                // currentUser: req.session.currentUser
              })
         }
     })
@@ -112,7 +112,7 @@ router.put('/index/:id', (req, res)=>{
     //console.log(req.body, " before");
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
     //console.log(req.body, " after");
-    Data.findByIdAndUpdate(
+    Book.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new:true},
@@ -122,4 +122,5 @@ router.put('/index/:id', (req, res)=>{
             res.redirect('/home/index')
     })
 })
+
 module.exports = router

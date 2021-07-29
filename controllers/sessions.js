@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
-const User = require('../models/users')
+const User = require('../models/usersModel.js')
 // USER NEW ROUTE
 router.get('/new', (req, res) => {
-    res.render('sessions/new.ejs', { currentUser: req.session.currentUser})
+    res.render('sessions/newsession.ejs', { currentUser: req.session.currentUser})
 })
+
 // USER LOGIN ROUTE (CREATE SESSION ROUTE)
 router.post('/', (req, res) => {
+
     User.findOne({ email: req.body.email}, (err, foundUser) => {
         console.log(foundUser + " this is the found user...");
         if (err) {
@@ -31,6 +33,7 @@ router.post('/', (req, res) => {
         }
     })
 })
+
 router.delete('/', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/home/index')
