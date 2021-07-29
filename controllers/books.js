@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const Data = require('../models/users.js')
-const bcrypt = require('bcrypt')
+const Book = require('../models/books.js')
+
 
 
 router.post('/index', (req, res)=>{
-    Data.create(req.body, (err, newUser)=>{
+    Book.create(req.body, (err, newBook)=>{
         if (err) {
             console.log(err)
         } else {
-            console.log(newUser)
+            console.log(newBook)
             res.redirect('/home/index')
         }
     })
@@ -19,14 +19,14 @@ router.get('/index/new', (req, res)=>{
     res.render('new.ejs', {currentUser: req.session.currentUser})
 })
 router.get('/index/:id', (req, res)=>{
-    Data.findById(req.params.id, (err, data)=>{
+    Book.findById(req.params.id, (err, data)=>{
         console.log(data)
         //res.send("This is working")
         res.render('show.ejs', { data: data})
     })
 })
 router.get('/index', (req, res)=>{
-    Data.find({}, (err, data, next)=>{
+    Book.find({}, (err, data, next)=>{
         console.log(Data)
         if (err) {
             console.log(err)

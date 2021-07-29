@@ -26,6 +26,10 @@ const usersControllers = require('./controllers/users')
 //app.use('/users', isAuthenticated, usersControllers)
 app.use('/users', usersControllers) // make new user
 
+//bring in the books controller
+const booksControllers= require('./controllers/books')
+app.use('/books', booksControllers)
+
 app.use('/', (req, res)=>{
     console.log('/page')
     res.send('working')
