@@ -30,6 +30,10 @@ app.use('/users', usersControllers) // make new user
 const booksControllers= require('./controllers/books')
 app.use('/books', booksControllers)
 
+//bring in the sessions controller
+const sessionsControllers = require('./controllers/sessionsRoutes')
+app.use('/sessions', sessionsControllers)
+
 app.use('/', (req, res)=>{
     console.log('/page')
     res.send('working')
